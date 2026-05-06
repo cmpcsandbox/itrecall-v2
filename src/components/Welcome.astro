@@ -30,7 +30,8 @@ const whatsAppUrl = toWhatsAppChatLink(
 				alt={`${BRAND_NAME} logo`}
 				width="420"
 				height="140"
-				decoding="async"
+				loading="eager"
+				fetchpriority="high"
 			/>
 			<span class="brandText">
 				<span class="name">
@@ -52,36 +53,38 @@ const whatsAppUrl = toWhatsAppChatLink(
 		</a>
 
 		<nav class="nav" aria-label="Primary">
-			<a href="#courses">Courses</a>
-			<a href="#delivery">Delivery</a>
-			<a href="#contact">Contact</a>
+			<a href="/courses">Courses</a>
+			<a href="/delivery">Delivery</a>
+			<a href="/contact">Contact</a>
 		</nav>
 	</header>
 
 	<main class="main">
 		<section class="hero" aria-labelledby="hero-title">
-			<p class="kicker">SQL Server — cloud or on‑prem, delivered online or onsite</p>
+			<p class="kicker">
+				SQL Server training targetted at cloud or on-premise architectures, delivered to you online or onsite
+			</p>
 			<h1 id="hero-title">{MCT_TAGLINE}</h1>
 			<p class="sublede">
 				DP‑080 (Transact‑SQL) → DP‑800 (latest AI additions).
 			</p>
 			<p class="lede">
-				Practical, confidence-building training from <strong>{MCT_NAME}</strong>, a Microsoft Certified
-				Trainer with 25 years of continuous technical teaching.
+				Practical, confidence-building training from <strong>{MCT_NAME}</strong> (a Microsoft Certified
+				Trainer with 25 years of continuous technical teaching).
 			</p>
 			<p class="lede lede2">
 				Work towards <strong>official Microsoft certifications</strong> with exam-aligned teaching and labs.
 			</p>
 
 			<div class="ctaRow">
-				<a class="btn primary" href={whatsAppUrl} target="_blank" rel="noreferrer">
-					MCT Direct (WhatsApp)
-				</a>
-				<a class="btn subtle" href={transcriptUrl} target="_blank" rel="noreferrer">
-					Official Microsoft certifications
-				</a>
 				<a class="btn outline" href={linkedInUrl} target="_blank" rel="noreferrer">
 					Reviews on LinkedIn
+				</a>
+				<a class="btn subtle" href={transcriptUrl} target="_blank" rel="noreferrer">
+					Verify Instructor Details
+				</a>
+				<a class="btn primary" href={whatsAppUrl} target="_blank" rel="noreferrer">
+					MCT Direct (WhatsApp)
 				</a>
 			</div>
 
@@ -139,9 +142,9 @@ const whatsAppUrl = toWhatsAppChatLink(
 						expertise from entry‑level skills to advanced administration and development.
 					</p>
 					<ul class="list">
-						<li><strong>Clarity</strong> over jargon: learn the “why”, not just the steps.</li>
-						<li><strong>Practice</strong> first: demos and labs focused on real tasks.</li>
-						<li><strong>Progression</strong>: structured paths from fundamentals to certification.</li>
+						<li><strong>Official labs</strong>: clean environments aligned to Microsoft courses and exams.</li>
+						<li><strong>Real SQL</strong>: admin, development, integration and performance patterns.</li>
+						<li><strong>Exam-ready</strong>: map skills to objectives and practise under realistic time pressure.</li>
 					</ul>
 				</div>
 
@@ -240,9 +243,11 @@ const whatsAppUrl = toWhatsAppChatLink(
 	}
 
 	.logo {
+		/* Hard-size to prevent layout jank/ghosting on refresh */
+		width: min(70vw, 420px);
 		height: 140px; /* match original itrecall.com header weight */
-		width: auto;
-		max-width: min(70vw, 520px);
+		max-width: 520px;
+		display: block;
 		border-radius: 0;
 		background: transparent;
 		border: none;

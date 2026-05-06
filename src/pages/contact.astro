@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CONTACT_EMAIL, CONTACT_PHONE, toWhatsAppChatLink, toWhatsAppPhoneE164 } from '../consts';
+
+const whatsAppPhoneDigits = toWhatsAppPhoneE164(CONTACT_PHONE);
+const whatsAppUrl = toWhatsAppChatLink(
+	whatsAppPhoneDigits,
+	`Hi Colin — I’d like to speak to an MCT about training.`
+);
+---
+
+<Layout>
+	<main class="main">
+		<header class="head">
+			<h1>Contact</h1>
+			<p>Fastest response: message the trainer directly.</p>
+		</header>
+
+		<section class="panel" aria-label="Contact options">
+			<div class="row">
+				<a class="btn primary" href={whatsAppUrl} target="_blank" rel="noreferrer">MCT Direct (WhatsApp)</a>
+				<a class="btn outline" href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a>
+			</div>
+			<p class="note">
+				For official credentials, use <a href="/" class="link">Verify Instructor Details</a> on the home page.
+			</p>
+		</section>
+
+		<p class="back">
+			<a href="/">← Back to home</a>
+		</p>
+	</main>
+</Layout>
+
+<style>
+	.main {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 32px clamp(16px, 4vw, 40px) 56px;
+		color: #e5e7eb;
+	}
+	.head h1 {
+		margin: 0 0 8px;
+		font-size: 34px;
+		letter-spacing: -0.03em;
+	}
+	.head p {
+		margin: 0 0 18px;
+		color: rgba(229, 231, 235, 0.78);
+		line-height: 1.6;
+	}
+	.panel {
+		padding: 18px;
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+	}
+	.row {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 11px 14px;
+		border-radius: 12px;
+		text-decoration: none;
+		font-weight: 650;
+		letter-spacing: -0.01em;
+		border: 1px solid transparent;
+	}
+	.btn.primary {
+		color: #081023;
+		background: linear-gradient(90deg, #2aa7ff 0%, #66ccff 100%);
+	}
+	.btn.outline {
+		color: rgba(229, 231, 235, 0.92);
+		border-color: rgba(255, 255, 255, 0.18);
+		background: rgba(255, 255, 255, 0.03);
+	}
+	.note {
+		margin: 14px 0 0;
+		color: rgba(229, 231, 235, 0.74);
+		line-height: 1.6;
+	}
+	.link {
+		color: rgba(229, 231, 235, 0.92);
+		text-decoration: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+	.back {
+		margin: 22px 0 0;
+	}
+	.back a {
+		color: rgba(229, 231, 235, 0.9);
+		text-decoration: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+</style>
