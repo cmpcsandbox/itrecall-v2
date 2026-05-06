@@ -6,9 +6,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 XDG_CONFIG_HOME=.astro-config astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 XDG_CONFIG_HOME=.astro-config astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 XDG_CONFIG_HOME=.astro-config astro preview",
     "astro": "astro"
   },
   "dependencies": {

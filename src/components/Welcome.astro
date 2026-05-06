@@ -1,210 +1,616 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+import {
+	BRAND_NAME,
+	CONTACT_EMAIL,
+	CONTACT_PHONE,
+	LINKEDIN_PROFILE,
+	MS_TRANSCRIPT,
+	MCT_NAME,
+	MCT_TAGLINE,
+	toHttpsUrl,
+	toWhatsAppChatLink,
+	toWhatsAppPhoneE164,
+} from '../consts';
+
+const linkedInUrl = toHttpsUrl(LINKEDIN_PROFILE);
+const transcriptUrl = toHttpsUrl(MS_TRANSCRIPT);
+const whatsAppPhoneDigits = toWhatsAppPhoneE164(CONTACT_PHONE);
+const whatsAppUrl = toWhatsAppChatLink(
+	whatsAppPhoneDigits,
+	`Hi Colin — I’d like to speak to an MCT about training.`
+);
 ---
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
+<div class="page">
+	<header class="header">
+		<a class="brand" href="/" aria-label={`${BRAND_NAME} home`}>
+			<img
+				class="logo"
+				src="/brand/itrecall-logo.png"
+				alt={`${BRAND_NAME} logo`}
+				width="420"
+				height="140"
+				decoding="async"
+			/>
+			<span class="brandText">
+				<span class="name">
+					<span class="nameIt">IT</span>
+					<span class="nameRest">Recall Ltd</span>
+				</span>
+				<span class="tagline" aria-label="Tagline using IT as Information Technology">
+					<span class="tag">See IT</span>
+					<span class="tagSep" aria-hidden="true">•</span>
+					<span class="tag">Retain IT</span>
+					<span class="tagSep" aria-hidden="true">•</span>
+					<span class="tag">Recall IT</span>
+				</span>
+				<span class="meta" aria-label="Partner status and lab environments">
+					<span class="metaLine">Microsoft Training Services Partner (TSP)</span>
+					<span class="metaLine">Official lab hosting environments</span>
+				</span>
+			</span>
+		</a>
+
+		<nav class="nav" aria-label="Primary">
+			<a href="#courses">Courses</a>
+			<a href="#delivery">Delivery</a>
+			<a href="#contact">Contact</a>
+		</nav>
+	</header>
+
+	<main class="main">
+		<section class="hero" aria-labelledby="hero-title">
+			<p class="kicker">SQL Server — cloud or on‑prem, delivered online or onsite</p>
+			<h1 id="hero-title">{MCT_TAGLINE}</h1>
+			<p class="sublede">
+				DP‑080 (Transact‑SQL) → DP‑800 (latest AI additions).
+			</p>
+			<p class="lede">
+				Practical, confidence-building training from <strong>{MCT_NAME}</strong>, a Microsoft Certified
+				Trainer with 25 years of continuous technical teaching.
+			</p>
+			<p class="lede lede2">
+				Work towards <strong>official Microsoft certifications</strong> with exam-aligned teaching and labs.
+			</p>
+
+			<div class="ctaRow">
+				<a class="btn primary" href={whatsAppUrl} target="_blank" rel="noreferrer">
+					MCT Direct (WhatsApp)
 				</a>
-			</section>
+				<a class="btn subtle" href={transcriptUrl} target="_blank" rel="noreferrer">
+					Official Microsoft certifications
+				</a>
+				<a class="btn outline" href={linkedInUrl} target="_blank" rel="noreferrer">
+					Reviews on LinkedIn
+				</a>
+			</div>
+
+			<div class="trust">
+				<div class="pill">Established 1999</div>
+				<div class="pill">Real-world, exam-aligned</div>
+				<div class="pill">On‑prem + Azure</div>
+			</div>
+		</section>
+
+		<section id="courses" class="section" aria-labelledby="courses-title">
+			<div class="sectionHead">
+				<h2 id="courses-title">Popular courses</h2>
+				<p>Firm foundations, then clear progression — from DP‑080 to DP‑800.</p>
+			</div>
+
+			<div class="grid">
+				<article class="card">
+					<h3>DP‑300</h3>
+					<p>Azure Database Administrator Associate</p>
+				</article>
+				<article class="card">
+					<h3>DP‑080</h3>
+					<p>Transact‑SQL</p>
+				</article>
+				<article class="card">
+					<h3>DP‑800</h3>
+					<p>
+						Develop AI‑enabled database solutions <span class="soon">Coming soon</span>
+					</p>
+				</article>
+				<article class="card">
+					<h3>DP‑900</h3>
+					<p>Database Fundamentals</p>
+				</article>
+				<article class="card">
+					<h3>AI‑900</h3>
+					<p>AI Fundamentals</p>
+				</article>
+				<article class="card">
+					<h3>Microsoft Fabric</h3>
+					<p>
+						Exploring Fabric for modern analytics <span class="soon">Coming soon</span>
+					</p>
+				</article>
+			</div>
+		</section>
+
+		<section id="delivery" class="section" aria-labelledby="delivery-title">
+			<div class="twoCol">
+				<div class="panel">
+					<h2 id="delivery-title">Official and custom delivery</h2>
+					<p>
+						Official Microsoft courses support exam success, while specialist SQL Server training builds
+						expertise from entry‑level skills to advanced administration and development.
+					</p>
+					<ul class="list">
+						<li><strong>Clarity</strong> over jargon: learn the “why”, not just the steps.</li>
+						<li><strong>Practice</strong> first: demos and labs focused on real tasks.</li>
+						<li><strong>Progression</strong>: structured paths from fundamentals to certification.</li>
+					</ul>
+				</div>
+
+				<div class="panel accent">
+					<h2>Core values</h2>
+					<ul class="list">
+						<li><strong>Trust</strong> through verifiable credentials.</li>
+						<li><strong>Practicality</strong>: training that maps to real environments.</li>
+						<li><strong>Support</strong>: calm, encouraging teaching for beginners and pros alike.</li>
+					</ul>
+					<div class="miniCtas">
+						<a class="textLink" href={linkedInUrl} target="_blank" rel="noreferrer">LinkedIn reviews</a>
+						<span class="sep" aria-hidden="true">·</span>
+						<a class="textLink" href={transcriptUrl} target="_blank" rel="noreferrer">Certifications</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="contact" class="section" aria-labelledby="contact-title">
+			<div class="contactCard">
+				<h2 id="contact-title">Contact</h2>
+				<p>
+					We’d be delighted to discuss your training needs. For the fastest response, message the trainer
+					directly.
+				</p>
+				<div class="contactRow">
+					<a class="btn primary" href={whatsAppUrl} target="_blank" rel="noreferrer">
+						MCT Direct (WhatsApp)
+					</a>
+					<a class="btn outline" href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a>
+				</div>
+			</div>
 		</section>
 	</main>
 
-	<a href="https://astro.build/blog/astro-6-beta/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 6.0?</h2>
+	<footer class="footer">
 		<p>
-			Redesigned dev server, fonts, live collections, built-in CSP support, and more! Click to
-			explore Astro 6.0's new features.
+			© {new Date().getFullYear()} {BRAND_NAME}. Reading, UK.
 		</p>
-	</a>
+	</footer>
 </div>
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
+	.page {
+		--bg0: #0b0d10;
+		--bg1: #070b14;
+		--text: #e5e7eb;
+		--muted: rgba(229, 231, 235, 0.78);
+		--line: rgba(255, 255, 255, 0.12);
+		--panel: rgba(255, 255, 255, 0.04);
+		--accentBlue: #2aa7ff; /* logo-aligned electric blue */
+		--accentBlue2: #66ccff; /* lighter blue highlight */
+		--accentTeal: #35c9c2; /* restrained teal for secondary accents */
+
+		min-height: 100%;
+		font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+			Noto Sans, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+		color: var(--text);
+		background:
+			radial-gradient(900px 700px at 10% 0%, rgba(42, 167, 255, 0.22), transparent 60%),
+			radial-gradient(900px 700px at 100% 10%, rgba(34, 197, 94, 0.14), transparent 60%),
+			linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 100%);
 	}
 
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
-
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
-
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
-
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
-
-	#links {
-		display: flex;
-		gap: 16px;
-	}
-
-	#links a {
+	.header {
 		display: flex;
 		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 22px clamp(16px, 4vw, 40px);
+		background:
+			radial-gradient(700px 220px at 0% 0%, rgba(42, 167, 255, 0.22), transparent 60%),
+			radial-gradient(700px 220px at 100% 0%, rgba(34, 197, 94, 0.14), transparent 60%),
+			linear-gradient(180deg, rgba(11, 13, 16, 0.98) 0%, rgba(11, 13, 16, 0.88) 100%);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 14px;
 		text-decoration: none;
-		transition: color 0.2s;
+		color: inherit;
 	}
 
-	#links a:hover {
-		color: rgb(78, 80, 86);
+	.brandText {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		line-height: 1.1;
+		min-height: 140px;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
 	}
 
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
+	.logo {
+		height: 140px; /* match original itrecall.com header weight */
+		width: auto;
+		max-width: min(70vw, 520px);
+		border-radius: 0;
+		background: transparent;
+		border: none;
+		object-fit: contain;
+		padding: 0;
 	}
 
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
+	.name {
+		font-weight: 750;
+		font-size: 36px;
+		letter-spacing: -0.02em;
+		display: inline-flex;
+		align-items: baseline;
+		gap: 4px;
+		white-space: nowrap;
+	}
+
+	.nameIt {
+		color: var(--accentBlue);
+		letter-spacing: -0.03em;
+	}
+
+	.nameRest {
+		color: rgba(229, 231, 235, 0.92);
+	}
+
+	.tagline {
+		display: inline-flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		align-items: center;
+		font-size: 11px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accentBlue);
+		padding: 0;
+		border-radius: 0;
+		border: none;
+		background: transparent;
+	}
+
+	.tagSep {
+		color: var(--accentBlue);
+	}
+
+	.meta {
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
+		color: rgba(229, 231, 235, 0.62);
+		font-size: 11px;
+		line-height: 1.25;
+		max-width: 40ch;
+	}
+
+	.metaLine {
+		display: block;
+	}
+
+	.nav {
+		display: flex;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.nav a {
+		color: rgba(229, 231, 235, 0.9);
+		text-decoration: none;
+		padding: 8px 10px;
 		border-radius: 10px;
 	}
 
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
+	.nav a:hover {
+		background: rgba(255, 255, 255, 0.06);
 	}
 
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
+	.main {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 0 clamp(16px, 4vw, 40px) 56px;
 	}
 
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
+	.hero {
+		padding: 36px 0 22px;
 	}
 
-	p {
-		color: #4b5563;
+	.kicker {
+		margin: 0 0 10px;
+		color: rgba(229, 231, 235, 0.75);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-size: 12px;
+	}
+
+	h1 {
+		margin: 0 0 12px;
+		font-size: clamp(28px, 4.2vw, 48px);
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+	}
+
+	.sublede {
+		margin: 0 0 12px;
+		max-width: 70ch;
+		color: rgba(229, 231, 235, 0.78);
+		line-height: 1.6;
+	}
+
+	.lede {
+		margin: 0 0 18px;
+		max-width: 70ch;
+		color: rgba(229, 231, 235, 0.85);
 		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
+		line-height: 1.7;
+	}
+
+	.lede2 {
+		margin-top: -10px;
+		color: rgba(229, 231, 235, 0.78);
+	}
+
+	.soon {
+		display: inline-block;
+		margin-left: 8px;
+		font-size: 12px;
+		letter-spacing: 0.02em;
+		padding: 3px 8px;
+		border-radius: 999px;
+		color: rgba(229, 231, 235, 0.9);
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		background: rgba(255, 255, 255, 0.04);
+		white-space: nowrap;
+	}
+
+	.ctaRow {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+		margin: 18px 0 18px;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 11px 14px;
+		border-radius: 12px;
+		text-decoration: none;
+		font-weight: 650;
+		letter-spacing: -0.01em;
+		border: 1px solid transparent;
+	}
+
+	.btn.primary {
+		color: #081023;
+		background: linear-gradient(90deg, var(--accentBlue) 0%, var(--accentBlue2) 100%);
+	}
+
+	.btn.outline {
+		color: rgba(229, 231, 235, 0.92);
+		border-color: rgba(255, 255, 255, 0.18);
+		background: rgba(255, 255, 255, 0.03);
+	}
+
+	.btn.subtle {
+		color: rgba(229, 231, 235, 0.92);
+		background: rgba(255, 255, 255, 0.06);
+		border-color: rgba(255, 255, 255, 0.12);
+	}
+
+	.btn:hover {
+		filter: brightness(1.05);
+	}
+
+	.btn:focus-visible,
+	.nav a:focus-visible,
+	.textLink:focus-visible {
+		outline: 2px solid rgba(42, 167, 255, 0.9);
+		outline-offset: 2px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		* {
+			scroll-behavior: auto !important;
+			transition: none !important;
+		}
+	}
+
+	.trust {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
+	}
+
+	.pill {
+		font-size: 13px;
+		padding: 7px 10px;
+		border-radius: 999px;
+		color: rgba(229, 231, 235, 0.9);
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		background: rgba(255, 255, 255, 0.03);
+	}
+
+	.section {
+		padding: 26px 0;
+		scroll-margin-top: 160px;
+	}
+
+	.sectionHead h2 {
+		margin: 0 0 6px;
+		font-size: 22px;
+		letter-spacing: -0.02em;
+	}
+
+	.sectionHead p {
+		margin: 0;
+		color: rgba(229, 231, 235, 0.74);
+		line-height: 1.6;
+	}
+
+	.grid {
+		margin-top: 16px;
+		display: grid;
+		grid-template-columns: repeat(12, 1fr);
+		gap: 12px;
+	}
+
+	.card {
+		grid-column: span 4;
+		padding: 14px 14px 16px;
+		border-radius: 16px;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+	}
+
+	.card h3 {
+		margin: 0 0 6px;
+		font-size: 16px;
+		letter-spacing: -0.01em;
+	}
+
+	.card p {
+		margin: 0;
+		color: rgba(229, 231, 235, 0.75);
+		line-height: 1.5;
+	}
+
+	.twoCol {
+		display: grid;
+		grid-template-columns: 1.2fr 0.8fr;
+		gap: 12px;
+		align-items: stretch;
+	}
+
+	.panel {
+		padding: 18px;
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+	}
+
+	.panel.accent {
+		background:
+			radial-gradient(800px 400px at 0% 0%, rgba(42, 167, 255, 0.18), transparent 60%),
+			rgba(255, 255, 255, 0.04);
+	}
+
+	.panel h2 {
+		margin: 0 0 10px;
+		font-size: 18px;
+		letter-spacing: -0.01em;
+	}
+
+	.panel p {
+		margin: 0 0 12px;
+		color: rgba(229, 231, 235, 0.78);
+		line-height: 1.65;
+	}
+
+	.list {
+		margin: 0;
+		padding-left: 18px;
+		color: rgba(229, 231, 235, 0.82);
+		line-height: 1.7;
+	}
+
+	.miniCtas {
+		margin-top: 12px;
+		color: rgba(229, 231, 235, 0.7);
+	}
+
+	.textLink {
+		color: rgba(229, 231, 235, 0.92);
+		text-decoration: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	.sep {
+		padding: 0 8px;
+	}
+
+	.contactCard {
+		padding: 18px;
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.12);
+	}
+
+	.contactCard h2 {
+		margin: 0 0 8px;
+		font-size: 20px;
+		letter-spacing: -0.01em;
+	}
+
+	.contactCard p {
+		margin: 0 0 14px;
+		color: rgba(229, 231, 235, 0.78);
+		line-height: 1.65;
+	}
+
+	.contactRow {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.footer {
+		padding: 18px clamp(16px, 4vw, 40px) 26px;
+		max-width: 1100px;
+		margin: 0 auto;
+		color: rgba(229, 231, 235, 0.6);
+	}
+
+	.footer p {
 		margin: 0;
 	}
 
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
+	@media (max-width: 920px) {
+		.card {
+			grid-column: span 6;
+		}
+		.twoCol {
+			grid-template-columns: 1fr;
+		}
 	}
 
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
-
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
+	@media (max-width: 560px) {
+		.nav {
 			display: none;
 		}
-	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
+		.header {
+			padding-top: 18px;
+			padding-bottom: 18px;
 		}
-
-		#hero {
-			display: block;
-			padding-top: 10%;
+		.logo {
+			height: 110px; /* match original responsive tweak */
 		}
-
-		#links {
-			flex-wrap: wrap;
+		.name {
+			font-size: 28px;
 		}
-
-		#links a.button {
-			padding: 14px 18px;
+		.tagline {
+			font-size: 10px;
 		}
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
+		.meta {
+			font-size: 12px;
 		}
-
-		h1 {
-			line-height: 1.5;
+		.card {
+			grid-column: span 12;
 		}
 	}
 </style>
