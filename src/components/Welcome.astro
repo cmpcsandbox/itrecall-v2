@@ -11,6 +11,7 @@ import {
 	toWhatsAppChatLink,
 	toWhatsAppPhoneE164,
 } from '../consts';
+import CourseCatalogue from './CourseCatalogue.astro';
 
 const linkedInUrl = toHttpsUrl(LINKEDIN_PROFILE);
 const transcriptUrl = toHttpsUrl(MS_TRANSCRIPT);
@@ -77,14 +78,14 @@ const whatsAppUrl = toWhatsAppChatLink(
 			</p>
 
 			<div class="ctaRow">
-				<a class="btn outline" href={linkedInUrl} target="_blank" rel="noreferrer">
-					Reviews on LinkedIn
-				</a>
-				<a class="btn subtle" href={transcriptUrl} target="_blank" rel="noreferrer">
-					Verify Instructor Details
-				</a>
-				<a class="btn primary" href={whatsAppUrl} target="_blank" rel="noreferrer">
-					MCT Direct (WhatsApp)
+					<a class="btn outline" href={linkedInUrl} target="_blank" rel="noreferrer">
+						Reviews on LinkedIn
+					</a>
+					<a class="btn subtle" href={transcriptUrl} target="_blank" rel="noreferrer">
+						Verify Instructor Details
+					</a>
+					<a class="btn primary" href={whatsAppUrl} target="_blank" rel="noreferrer">
+						MCT Direct (WhatsApp)
 				</a>
 			</div>
 
@@ -98,39 +99,12 @@ const whatsAppUrl = toWhatsAppChatLink(
 		<section id="courses" class="section" aria-labelledby="courses-title">
 			<div class="sectionHead">
 				<h2 id="courses-title">Popular courses</h2>
-				<p>Firm foundations, then clear progression — from DP‑080 to DP‑800.</p>
-			</div>
+					<p>Firm foundations, role‑based pathways and focused Microsoft Fabric skills.</p>
+				</div>
 
-			<div class="grid">
-				<article class="card">
-					<h3>DP‑300</h3>
-					<p>Azure Database Administrator Associate</p>
-				</article>
-				<article class="card">
-					<h3>DP‑080</h3>
-					<p>Transact‑SQL</p>
-				</article>
-				<article class="card">
-					<h3>DP‑800</h3>
-					<p>
-						Develop AI‑enabled database solutions <span class="soon">Coming soon</span>
-					</p>
-				</article>
-				<article class="card">
-					<h3>DP‑900</h3>
-					<p>Database Fundamentals</p>
-				</article>
-				<article class="card">
-					<h3>AI‑900</h3>
-					<p>AI Fundamentals</p>
-				</article>
-				<article class="card">
-					<h3>Microsoft Fabric</h3>
-					<p>
-						Exploring Fabric for modern analytics <span class="soon">Coming soon</span>
-					</p>
-				</article>
-			</div>
+				<div class="courseCatalogue">
+					<CourseCatalogue compact />
+				</div>
 		</section>
 
 		<section id="delivery" class="section" aria-labelledby="delivery-title">
@@ -369,19 +343,6 @@ const whatsAppUrl = toWhatsAppChatLink(
 		color: rgba(229, 231, 235, 0.78);
 	}
 
-	.soon {
-		display: inline-block;
-		margin-left: 8px;
-		font-size: 12px;
-		letter-spacing: 0.02em;
-		padding: 3px 8px;
-		border-radius: 999px;
-		color: rgba(229, 231, 235, 0.9);
-		border: 1px solid rgba(255, 255, 255, 0.14);
-		background: rgba(255, 255, 255, 0.04);
-		white-space: nowrap;
-	}
-
 	.ctaRow {
 		display: flex;
 		gap: 12px;
@@ -393,33 +354,50 @@ const whatsAppUrl = toWhatsAppChatLink(
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		min-height: 44px;
+		box-sizing: border-box;
 		padding: 11px 14px;
-		border-radius: 12px;
+		border-radius: 8px;
 		text-decoration: none;
 		font-weight: 650;
-		letter-spacing: -0.01em;
+		letter-spacing: 0;
 		border: 1px solid transparent;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+		transition:
+			transform 140ms ease,
+			background-color 140ms ease,
+			border-color 140ms ease,
+			box-shadow 140ms ease;
 	}
 
 	.btn.primary {
 		color: #081023;
 		background: linear-gradient(90deg, var(--accentBlue) 0%, var(--accentBlue2) 100%);
+		border-color: var(--accentBlue2);
+		box-shadow: 0 2px 6px rgba(42, 167, 255, 0.18);
 	}
 
 	.btn.outline {
-		color: rgba(229, 231, 235, 0.92);
-		border-color: rgba(255, 255, 255, 0.18);
-		background: rgba(255, 255, 255, 0.03);
+		color: #dff5ff;
+		border-color: var(--accentBlue);
+		background: rgba(42, 167, 255, 0.06);
 	}
 
 	.btn.subtle {
-		color: rgba(229, 231, 235, 0.92);
-		background: rgba(255, 255, 255, 0.06);
-		border-color: rgba(255, 255, 255, 0.12);
+		color: #dff5ff;
+		background: rgba(42, 167, 255, 0.06);
+		border-color: var(--accentBlue);
 	}
 
 	.btn:hover {
-		filter: brightness(1.05);
+		filter: brightness(1.12);
+		transform: translateY(-1px);
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+	}
+
+	.btn:active {
+		transform: translateY(1px);
+		box-shadow: none;
 	}
 
 	.btn:focus-visible,
@@ -468,31 +446,8 @@ const whatsAppUrl = toWhatsAppChatLink(
 		line-height: 1.6;
 	}
 
-	.grid {
-		margin-top: 16px;
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		gap: 12px;
-	}
-
-	.card {
-		grid-column: span 4;
-		padding: 14px 14px 16px;
-		border-radius: 16px;
-		background: rgba(255, 255, 255, 0.04);
-		border: 1px solid rgba(255, 255, 255, 0.12);
-	}
-
-	.card h3 {
-		margin: 0 0 6px;
-		font-size: 16px;
-		letter-spacing: -0.01em;
-	}
-
-	.card p {
-		margin: 0;
-		color: rgba(229, 231, 235, 0.75);
-		line-height: 1.5;
+	.courseCatalogue {
+		margin-top: 18px;
 	}
 
 	.twoCol {
@@ -586,9 +541,6 @@ const whatsAppUrl = toWhatsAppChatLink(
 	}
 
 	@media (max-width: 920px) {
-		.card {
-			grid-column: span 6;
-		}
 		.twoCol {
 			grid-template-columns: 1fr;
 		}
@@ -613,9 +565,6 @@ const whatsAppUrl = toWhatsAppChatLink(
 		}
 		.meta {
 			font-size: 12px;
-		}
-		.card {
-			grid-column: span 12;
 		}
 	}
 </style>

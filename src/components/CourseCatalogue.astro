@@ -1,0 +1,279 @@
+---
+const { compact = false } = Astro.props;
+
+const coreCourses = [
+	{ code: 'DP‑080', title: 'Transact‑SQL' },
+	{ code: 'DP‑300', title: 'Azure Database Administrator Associate' },
+	{
+		code: 'DP‑800',
+		title: 'Develop AI‑enabled database solutions',
+		duration: '3 days',
+		href: 'https://learn.microsoft.com/en-us/training/courses/dp-800t00',
+	},
+	{ code: 'DP‑900', title: 'Azure Data Fundamentals' },
+	{ code: 'AI‑900', title: 'Azure AI Fundamentals' },
+];
+
+const fabricCourses = [
+	{
+		code: 'DP‑600',
+		title: 'Microsoft Fabric Analytics Engineer',
+		duration: '4 days',
+		href: 'https://learn.microsoft.com/en-us/training/courses/dp-600t00',
+	},
+	{
+		code: 'DP‑700',
+		title: 'Implement data engineering solutions using Microsoft Fabric',
+		duration: '4 days',
+		href: 'https://learn.microsoft.com/en-us/training/courses/dp-700t00',
+	},
+	{
+		code: 'DP‑601',
+		title: 'Implement a Lakehouse with Microsoft Fabric',
+		duration: '1 day',
+		weekend: true,
+		href: 'https://learn.microsoft.com/en-us/training/courses/dp-601t00',
+	},
+	{
+		code: 'DP‑602',
+		title: 'Implement a Data Warehouse with Microsoft Fabric',
+		duration: '1 day',
+		weekend: true,
+		href: 'https://learn.microsoft.com/en-us/training/courses/dp-602t00',
+	},
+	{
+		code: 'DP‑603',
+		title: 'Implement Real‑Time Intelligence with Microsoft Fabric',
+		duration: '1 day',
+		weekend: true,
+		href: 'https://learn.microsoft.com/en-us/training/paths/explore-real-time-analytics-microsoft-fabric/',
+	},
+];
+---
+
+<div class:list={['catalogue', { compact }]}>
+	<section class="track" aria-labelledby={`core-courses-${compact ? 'compact' : 'full'}`}>
+		<div class="track-heading">
+			<div>
+				<p class="eyebrow">Data platform foundations</p>
+				<h2 id={`core-courses-${compact ? 'compact' : 'full'}`}>SQL, Azure and AI</h2>
+			</div>
+			<p>Build practical database skills from essential Transact‑SQL through administration and AI‑enabled solutions.</p>
+		</div>
+
+		<div class="course-grid core-grid">
+			{coreCourses.map((course) => (
+				<article class="course-card">
+					<div class="course-topline">
+						<h3>{course.code}</h3>
+						{course.duration && <span class="duration">{course.duration}</span>}
+					</div>
+					<p>{course.title}</p>
+					{course.href && (
+						<a class="learn-link" href={course.href} target="_blank" rel="noreferrer">
+							Course details <span aria-hidden="true">↗</span>
+						</a>
+					)}
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="track fabric-track" aria-labelledby={`fabric-courses-${compact ? 'compact' : 'full'}`}>
+		<div class="track-heading">
+			<div>
+				<p class="eyebrow fabric-eyebrow">Microsoft Fabric</p>
+				<h2 id={`fabric-courses-${compact ? 'compact' : 'full'}`}>Choose your Fabric pathway</h2>
+			</div>
+			<p>Progress from focused one‑day skills courses to role‑based analytics and data engineering programmes.</p>
+		</div>
+
+		<div class="course-grid fabric-grid">
+			{fabricCourses.map((course) => (
+				<article class:list={['course-card', 'fabric-card', { promoted: course.weekend }]}>
+					<div class="course-topline">
+						<h3>{course.code}</h3>
+						<span class="duration">{course.duration}</span>
+					</div>
+					<p>{course.title}</p>
+					{course.weekend && <span class="weekend">Weekend course available</span>}
+					<div class="card-actions">
+						<a class="learn-link" href={course.href} target="_blank" rel="noreferrer">
+							Course details <span aria-hidden="true">↗</span>
+						</a>
+						{course.weekend && <a class="contact-link" href={`/contact?course=${course.code.replace('‑', '-')}`}>Contact for details</a>}
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+</div>
+
+<style>
+	.catalogue {
+		--text: #e5e7eb;
+		--muted: rgba(229, 231, 235, 0.75);
+		--line: rgba(255, 255, 255, 0.12);
+		--blue: #2aa7ff;
+		--teal: #35c9c2;
+		display: grid;
+		gap: 34px;
+	}
+
+	.track {
+		min-width: 0;
+	}
+
+	.fabric-track {
+		padding-top: 28px;
+		border-top: 1px solid var(--line);
+	}
+
+	.track-heading {
+		display: grid;
+		grid-template-columns: minmax(240px, 0.8fr) minmax(280px, 1.2fr);
+		gap: 24px;
+		align-items: end;
+		margin-bottom: 16px;
+	}
+
+	.eyebrow {
+		margin: 0 0 5px;
+		color: var(--blue);
+		font-size: 12px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	.fabric-eyebrow {
+		color: var(--teal);
+	}
+
+	.track-heading h2 {
+		margin: 0;
+		font-size: 21px;
+		letter-spacing: 0;
+	}
+
+	.track-heading > p {
+		margin: 0;
+		color: var(--muted);
+		line-height: 1.55;
+	}
+
+	.course-grid {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: 12px;
+	}
+
+	.course-card {
+		grid-column: span 4;
+		display: flex;
+		min-height: 132px;
+		padding: 15px;
+		flex-direction: column;
+		border: 1px solid var(--line);
+		border-radius: 8px;
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.fabric-card {
+		background: rgba(53, 201, 194, 0.045);
+		border-color: rgba(53, 201, 194, 0.22);
+	}
+
+	.fabric-card.promoted {
+		border-top: 2px solid rgba(53, 201, 194, 0.8);
+	}
+
+	.course-topline {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.course-card h3 {
+		margin: 0;
+		color: var(--text);
+		font-size: 17px;
+		letter-spacing: 0;
+	}
+
+	.duration {
+		color: rgba(229, 231, 235, 0.62);
+		font-size: 12px;
+		white-space: nowrap;
+	}
+
+	.course-card > p {
+		margin: 8px 0 14px;
+		color: var(--muted);
+		line-height: 1.48;
+	}
+
+	.weekend {
+		align-self: flex-start;
+		margin: -3px 0 13px;
+		padding: 4px 7px;
+		border: 1px solid rgba(53, 201, 194, 0.35);
+		border-radius: 4px;
+		color: #8de2dd;
+		background: rgba(53, 201, 194, 0.08);
+		font-size: 11px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	.card-actions {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		margin-top: auto;
+		flex-wrap: wrap;
+	}
+
+	.learn-link,
+	.contact-link {
+		color: rgba(229, 231, 235, 0.9);
+		font-size: 13px;
+		font-weight: 650;
+		text-decoration: none;
+	}
+
+	.learn-link:hover,
+	.contact-link:hover {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.contact-link {
+		color: #8de2dd;
+	}
+
+	.compact {
+		gap: 28px;
+	}
+
+	@media (max-width: 920px) {
+		.course-card {
+			grid-column: span 6;
+		}
+	}
+
+	@media (max-width: 680px) {
+		.track-heading {
+			grid-template-columns: 1fr;
+			gap: 8px;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.course-card {
+			grid-column: span 12;
+			min-height: 0;
+		}
+	}
+</style>
