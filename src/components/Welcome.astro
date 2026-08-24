@@ -11,7 +11,6 @@ import {
 	toWhatsAppChatLink,
 	toWhatsAppPhoneE164,
 } from '../consts';
-import CourseCatalogue from './CourseCatalogue.astro';
 
 const linkedInUrl = toHttpsUrl(LINKEDIN_PROFILE);
 const transcriptUrl = toHttpsUrl(MS_TRANSCRIPT);
@@ -20,6 +19,15 @@ const whatsAppUrl = toWhatsAppChatLink(
 	whatsAppPhoneDigits,
 	`Hi Colin — I’d like to speak to an MCT about training.`
 );
+
+const popularCourses = [
+	{ code: 'DP‑601', title: 'Implement a Lakehouse with Microsoft Fabric', weekend: true },
+	{ code: 'DP‑602', title: 'Implement a Data Warehouse with Microsoft Fabric', weekend: true },
+	{ code: 'DP‑603', title: 'Implement Real‑Time Intelligence with Microsoft Fabric', weekend: true },
+	{ code: 'DP‑300', title: 'Azure Database Administrator Associate' },
+	{ code: 'DP‑080', title: 'Transact‑SQL' },
+	{ code: 'DP‑800', title: 'Develop AI‑enabled database solutions' },
+];
 ---
 
 <div class="page">
@@ -63,14 +71,14 @@ const whatsAppUrl = toWhatsAppChatLink(
 	<main class="main">
 		<section class="hero" aria-labelledby="hero-title">
 			<p class="kicker">
-				SQL Server training targetted at cloud or on-premise architectures, delivered to you online or onsite
+				Microsoft data platform training, delivered online or onsite
 			</p>
 			<h1 id="hero-title">{MCT_TAGLINE}</h1>
 			<p class="sublede">
 				DP‑080 (Transact‑SQL) → DP‑800 (latest AI additions).
 			</p>
 			<p class="lede">
-				Practical, confidence-building training from <strong>{MCT_NAME}</strong> (a Microsoft Certified
+				Practical, confidence-building training from <strong>{MCT_NAME}</strong> (Microsoft Certified
 				Trainer with 25 years of continuous technical teaching).
 			</p>
 			<p class="lede lede2">
@@ -99,12 +107,28 @@ const whatsAppUrl = toWhatsAppChatLink(
 		<section id="courses" class="section" aria-labelledby="courses-title">
 			<div class="sectionHead">
 				<h2 id="courses-title">Popular courses</h2>
-					<p>Firm foundations, role‑based pathways and focused Microsoft Fabric skills.</p>
+					<p>Firm foundations, current data platform skills and focused Microsoft Fabric training.</p>
 				</div>
 
-				<div class="courseCatalogue">
-					<CourseCatalogue compact />
+				<div class="popularGrid">
+					{popularCourses.map((course) => (
+						<article class:list={['popularCard', { weekendCard: course.weekend }]}>
+							<div class="popularTopline">
+								<h3>{course.code}</h3>
+								{course.weekend && <span class="fabricLabel">Microsoft Fabric</span>}
+							</div>
+							<p>{course.title}</p>
+							{course.weekend && (
+								<div class="weekendOffer">
+									<span>Weekend course available</span>
+									<a href={`/contact?course=${course.code.replace('‑', '-')}`}>Contact for details</a>
+								</div>
+							)}
+						</article>
+					))}
 				</div>
+
+				<a class="allCoursesLink" href="/courses">View the complete course catalogue</a>
 		</section>
 
 		<section id="delivery" class="section" aria-labelledby="delivery-title">
@@ -446,8 +470,96 @@ const whatsAppUrl = toWhatsAppChatLink(
 		line-height: 1.6;
 	}
 
-	.courseCatalogue {
+	.popularGrid {
 		margin-top: 18px;
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		gap: 12px;
+	}
+
+	.popularCard {
+		grid-column: span 4;
+		display: flex;
+		min-height: 126px;
+		padding: 15px;
+		flex-direction: column;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: 8px;
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.popularCard.weekendCard {
+		border-color: rgba(42, 167, 255, 0.55);
+		background:
+			linear-gradient(180deg, rgba(42, 167, 255, 0.11), rgba(42, 167, 255, 0.035)),
+			rgba(255, 255, 255, 0.03);
+		box-shadow: inset 0 2px 0 var(--accentBlue);
+	}
+
+	.popularTopline {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.popularCard h3 {
+		margin: 0;
+		font-size: 17px;
+		letter-spacing: 0;
+	}
+
+	.popularCard > p {
+		margin: 8px 0 14px;
+		color: rgba(229, 231, 235, 0.76);
+		line-height: 1.5;
+	}
+
+	.fabricLabel {
+		color: var(--accentBlue2);
+		font-size: 11px;
+		font-weight: 700;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.weekendOffer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		margin-top: auto;
+		flex-wrap: wrap;
+	}
+
+	.weekendOffer span {
+		padding: 4px 7px;
+		border: 1px solid rgba(42, 167, 255, 0.58);
+		border-radius: 4px;
+		color: #a7e3ff;
+		background: rgba(42, 167, 255, 0.1);
+		font-size: 11px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	.weekendOffer a,
+	.allCoursesLink {
+		color: var(--accentBlue2);
+		font-size: 13px;
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.weekendOffer a:hover,
+	.allCoursesLink:hover {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.allCoursesLink {
+		display: inline-block;
+		margin-top: 16px;
 	}
 
 	.twoCol {
@@ -541,6 +653,9 @@ const whatsAppUrl = toWhatsAppChatLink(
 	}
 
 	@media (max-width: 920px) {
+		.popularCard {
+			grid-column: span 6;
+		}
 		.twoCol {
 			grid-template-columns: 1fr;
 		}
@@ -565,6 +680,10 @@ const whatsAppUrl = toWhatsAppChatLink(
 		}
 		.meta {
 			font-size: 12px;
+		}
+		.popularCard {
+			grid-column: span 12;
+			min-height: 0;
 		}
 	}
 </style>

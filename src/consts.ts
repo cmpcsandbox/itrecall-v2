@@ -1,6 +1,6 @@
 export const MCT_NAME = 'Colin Cussans';
 export const BRAND_NAME = 'IT Recall Ltd';
-export const MCT_TAGLINE = 'SQL training for real work and real exams.';
+export const MCT_TAGLINE = 'Build practical skills across SQL, Azure and Microsoft Fabric.';
 
 // Verified LinkedIn Handle: colin-carlos-cussans-4b9594a
 export const LINKEDIN_PROFILE = 'https://www.linkedin.com/in/colin-carlos-cussans-4b9594a';
