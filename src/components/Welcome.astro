@@ -662,15 +662,35 @@ const popularCourses = [
 	}
 
 	@media (max-width: 560px) {
-		.nav {
-			display: none;
-		}
 		.header {
+			flex-direction: column;
+			align-items: center;
 			padding-top: 18px;
 			padding-bottom: 18px;
 		}
+		.brand {
+			width: 100%;
+			max-width: 320px;
+			flex-direction: column;
+			gap: 8px;
+		}
 		.logo {
-			height: 110px; /* match original responsive tweak */
+			width: min(58vw, 220px);
+			height: 84px;
+		}
+		.brandText {
+			min-height: 0;
+		}
+		.nav {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+			gap: 4px;
+			flex-wrap: nowrap;
+		}
+		.nav a {
+			padding: 8px;
+			font-size: 14px;
 		}
 		.name {
 			font-size: 28px;
